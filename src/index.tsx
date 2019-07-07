@@ -95,8 +95,8 @@ function App() {
         name="email"
         value={email.value}
       />
-
-      {/* <p>{JSON.stringify(form)}</p> */}
+      <br />
+      <small>{JSON.stringify(form)}</small>
     </div>
   );
 }
