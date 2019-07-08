@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "react-dom";
 import { validators } from "./validators";
-
+import "bulma";
 import "./styles.css";
 const { compose, required, maxlength, email } = validators;
 const initial = {
@@ -62,40 +62,54 @@ function App() {
   };
   const getValidation = input => {
     return !form.touched[input]
-      ? ""
+      ? "input"
       : form.invalid[input] && form.invalid[input].errors.length > 0
-      ? "invalid"
-      : "valid";
+      ? "input is-danger"
+      : "input is-success";
   };
   const { firstName, lastName, email } = form;
   return (
     <div className="App">
       <h1>Hello CodeSandbox</h1>
-      <input
-        type="text"
-        className={getValidation("firstName")}
-        onBlur={e => onBlur(e)}
-        onChange={e => onInput(e)}
-        name="firstName"
-        value={firstName.value}
-      />
-      <input
-        type="text"
-        className={getValidation("lastName")}
-        onBlur={e => onBlur(e)}
-        onChange={e => onInput(e)}
-        name="lastName"
-        value={lastName.value}
-      />
-      <input
-        type="text"
-        className={getValidation("email")}
-        onBlur={e => onBlur(e)}
-        onChange={e => onInput(e)}
-        name="email"
-        value={email.value}
-      />
-      <br />
+
+      <div className="field">
+        <div className="control">
+          <input
+            onBlur={e => onBlur(e)}
+            onChange={e => onInput(e)}
+            name="firstName"
+            value={firstName.value}
+            className={getValidation("firstName")}
+            type="text"
+          />
+          {/* <p className="help is-success">This username is available</p> */}
+        </div>
+      </div>
+      <div className="field">
+        <div className="control">
+          <input
+            onBlur={e => onBlur(e)}
+            onChange={e => onInput(e)}
+            name="lastName"
+            value={lastName.value}
+            className={getValidation("lastName")}
+            type="text"
+          />
+        </div>
+      </div>
+      <div className="field">
+        <div className="control">
+          <input
+            onBlur={e => onBlur(e)}
+            onChange={e => onInput(e)}
+            name="email"
+            value={email.value}
+            className={getValidation("email")}
+            type="text"
+          />
+        </div>
+      </div>
+
       <small>{JSON.stringify(form)}</small>
     </div>
   );
