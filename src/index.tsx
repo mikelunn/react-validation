@@ -42,6 +42,8 @@ function App() {
       : "is-success";
   };
   const { firstName, lastName, email } = form;
+  const ValidationMessage = key => <>{FormMessage(key)(form)}</>;
+
   return (
     <div className="App container">
       <h1>Hello CodeSandbox</h1>
@@ -57,7 +59,7 @@ function App() {
             type="text"
           />
 
-          {FormMessage("firstName")(form)}
+          <ValidationMessage key="firstName" />
         </div>
       </div>
       <div className="field">
@@ -70,7 +72,7 @@ function App() {
             className={`input ${getValidation("lastName")}`}
             type="text"
           />
-          {FormMessage("lastName")(form)}
+          <ValidationMessage key="lastName" />
         </div>
       </div>
 
@@ -84,7 +86,7 @@ function App() {
             className={`input ${getValidation("email")}`}
             type="text"
           />
-          {FormMessage("email")(form)}
+          <ValidationMessage key="email" />
         </div>
       </div>
 
