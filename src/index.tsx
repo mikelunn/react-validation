@@ -1,6 +1,7 @@
 import * as React from "react";
 import { render } from "react-dom";
 import { validators } from "./validators";
+import { FormMessage } from "./form-message";
 import "bulma";
 import "./styles.css";
 const { compose, required, maxlength, email } = validators;
@@ -62,14 +63,14 @@ function App() {
   };
   const getValidation = input => {
     return !form.touched[input]
-      ? "input"
+      ? ""
       : form.invalid[input] && form.invalid[input].errors.length > 0
-      ? "input is-danger"
-      : "input is-success";
+      ? "is-danger"
+      : "is-success";
   };
   const { firstName, lastName, email } = form;
   return (
-    <div className="App">
+    <div className="App container">
       <h1>Hello CodeSandbox</h1>
 
       <div className="field">
@@ -79,10 +80,11 @@ function App() {
             onChange={e => onInput(e)}
             name="firstName"
             value={firstName.value}
-            className={getValidation("firstName")}
+            className={`input ${getValidation("firstName")}`}
             type="text"
           />
-          {/* <p className="help is-success">This username is available</p> */}
+
+          {FormMessage("firstName")(form)}
         </div>
       </div>
       <div className="field">
@@ -92,11 +94,13 @@ function App() {
             onChange={e => onInput(e)}
             name="lastName"
             value={lastName.value}
-            className={getValidation("lastName")}
+            className={`input ${getValidation("lastName")}`}
             type="text"
           />
+          {FormMessage("lastName")(form)}
         </div>
       </div>
+
       <div className="field">
         <div className="control">
           <input
@@ -104,9 +108,10 @@ function App() {
             onChange={e => onInput(e)}
             name="email"
             value={email.value}
-            className={getValidation("email")}
+            className={`input ${getValidation("email")}`}
             type="text"
           />
+          {FormMessage("email")(form)}
         </div>
       </div>
 
