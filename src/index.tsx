@@ -1,39 +1,12 @@
 import * as React from "react";
 import { render } from "react-dom";
-import { validators } from "./validators";
 import { FormMessage } from "./form-message";
 import "bulma";
 import "./styles.css";
-const { compose, required, maxlength, email } = validators;
-const initial = {
-  firstName: {
-    value: "",
-    validator: compose(
-      required,
-      maxlength(5)
-    )
-  },
-  lastName: {
-    value: "",
-    validator: compose(
-      required,
-      maxlength(10)
-    )
-  },
-  email: {
-    value: "",
-    validator: compose(
-      required,
-      email
-    )
-  },
-  touched: {},
-  dirty: {},
-  invalid: {}
-};
+import { state } from "./state";
 
 function App() {
-  const [form, setForm]: any = React.useState(initial);
+  const [form, setForm]: any = React.useState(state);
 
   React.useEffect(() => {
     console.log(form);
